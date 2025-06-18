@@ -1,5 +1,16 @@
 # CharacterPlus: Build Character AI with Memory Using Letta
 
+<div align="center">
+  
+  ### 🚀 [Try the app!](https://v0.dev/chat/characterplus-project-4d7WsE1OJeb)
+  
+  [**v0 Transcript**](https://v0.dev/chat/characterplus-project-4d7WsE1OJeb) • 
+  [**Watch on YouTube**](https://www.youtube.com/@letta-ai) • 
+  [**Try Letta Cloud**](https://app.letta.com) • 
+  [**Meetup Series**](https://lu.ma/letta)
+  
+</div>
+
 <img width="1103" alt="CharacterPlus Screenshot" src="https://github.com/user-attachments/assets/7977e40a-e0f3-4113-b4e6-d42c7543981c" />
 
 ## Overview
@@ -65,22 +76,29 @@ Characters created by the app are prefixed with `character_*`.
 
 ### Option 2: Run Locally
 
+**Prerequisites:**
+- Node.js 18.17 or later
+- A package manager (npm, yarn, or pnpm)
+
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd characterplus
+git clone https://github.com/letta-ai/characterai-memory.git
+cd characterai-memory
 
 # Install dependencies
-pnpm install        # or yarn / npm
+npm install         # or yarn / pnpm install
 
 # Set up environment variables
-cp .env.example .env.local
-# Add your Letta Cloud API key to .env.local:
-# LETTA_API_KEY=sk-ltta-...
+# Create a .env.local file with your Letta API key
+echo "LETTA_API_KEY=sk-ltta-..." > .env.local
 
 # Start the development server
-pnpm dev
+npm run dev         # or yarn dev / pnpm dev
+
+# Open http://localhost:3000 in your browser
 ```
+
+**Note:** v0 projects use Next.js 14+ with the App Router by default. If you encounter any issues, ensure your Node.js version meets the requirements.
 
 ## Production Considerations
 
@@ -106,8 +124,8 @@ We welcome contributions! Feel free to:
 
 ## License
 
-MIT licensed, please feel free to use take this code, remix it, and do whatever you want with it!
+[Add your license information here]
 
 ---
 
-Built with 💜 using [Letta](https://letta.com) and [Vercel v0](https://v0.dev)
+Built with ❤️ using [Letta](https://letta.com) and [Vercel v0](https://v0.dev)
