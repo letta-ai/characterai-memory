@@ -11,7 +11,7 @@
   
 </div>
 
-<img width="1103" alt="CharacterPlus Screenshot" src="https://github.com/user-attachments/assets/7977e40a-e0f3-4113-b4e6-d42c7543981c" />
+<img width="1296" alt="CharacterPlus screenshot" src="https://github.com/user-attachments/assets/fe998895-1443-459d-934e-af52de103231" />
 
 ## Overview
 
