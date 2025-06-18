@@ -1,101 +1,113 @@
-# Build CharacterAI with memory, using Letta
+# CharacterPlus: Build Character AI with Memory Using Letta
 
-<img width="1103" alt="image" src="https://github.com/user-attachments/assets/7977e40a-e0f3-4113-b4e6-d42c7543981c" />
+<img width="1103" alt="CharacterPlus Screenshot" src="https://github.com/user-attachments/assets/7977e40a-e0f3-4113-b4e6-d42c7543981c" />
 
----
+## Overview
 
-CharacterPlus is a **Character AI–style web app** that lets you chat with fully-fledged **stateful agents** powered by [Letta](https://docs.letta.com).  
-Each character is backed by its own stateful agent with long-term [memory blocks](https://www.letta.com/blog/memory-blocks), tool-calling abilities, and pre-built REST API endpoints (which you can connect to with our Python and TypeScript/Node.js SDKs).
+CharacterPlus is a **Character AI–style web application** that enables conversations with fully-fledged **stateful agents** powered by [Letta](https://docs.letta.com).
 
-The project was built for the [**“Stateful Agents Vibecoding” meetup**](https://lu.ma/letta), using **[Vercel v0](https://v0.dev)** as the vibecoding platform of choice.
+### Key Features
+- **Persistent Memory**: Each character maintains long-term memory across conversations
+- **Shared User Profile**: Characters share knowledge about you through a common memory block
+- **Tool-Calling Capabilities**: Agents can perform actions beyond just chatting
+- **REST API Integration**: Built-in endpoints compatible with Python and TypeScript/Node.js SDKs
 
-The source code in this repo is the unedited output of that session, plus this README.
+> Built during the ["Stateful Agents Vibecoding" meetup](https://lu.ma/letta) using [Vercel v0](https://v0.dev).
 
----
+## How It Works
 
-## ✨ How does the app work?
+### 1. Connect to Your Letta Server
 
-### Connecting the app to a Letta server (your agents server)
+Click the ⚙️ **Settings** icon and enter your [Letta Cloud API key](https://docs.letta.com/guides/cloud/letta-api-key).
 
-Click the ⚙️ **gear icon**, and enter your [Letta Cloud API key](https://docs.letta.com/guides/cloud/letta-api-key).
+**Using Self-Hosted Letta?**
+- Replace `api.letta.com` in the source code with your server's IP address
+- Use your server password as the API key (or a dummy value if not password-protected)
 
-*If you're using a [self-hosted Letta server](https://docs.letta.com/guides/selfhosting), you'll need to replace `api.letta.com` in the source code with the IP address of your Letta server. If you are password protecting your server, use your password as the Letta Cloud API key, or use a dummy value if you're not password protecting.*
+### 2. Customize Your Profile
 
-### Customizing your shared memory profile
+Click the 👤 **Profile** icon to edit your `human` memory block. This [shared memory block](https://docs.letta.com/guides/agents/multi-agent-shared-memory) contains information about you that all characters can access.
 
-Once logged in, you can click on the 👤 **profile icon** to view your `human` memory block.
-This is a [shared memory block](https://docs.letta.com/guides/agents/multi-agent-shared-memory) that contains information about you (the user chatting wtih the characters).
-The memory block is shared with each of the characters, so when one character learns something about you, all the other characters will receive that information too.
+<img width="421" alt="Profile Editor" src="https://github.com/user-attachments/assets/89719c5c-95f0-4487-bb02-11f840d10971" />
 
-<img width="421" alt="image" src="https://github.com/user-attachments/assets/89719c5c-95f0-4487-bb02-11f840d10971" />
+**How Memory Works:**
+- **Shared Memory**: When one character learns something about you, all characters receive that information
+- **Private Memory**: Each character has their own persona and individual memories
+- **Character Personas**: Pre-defined in [`/lib/characters.json`](/lib/characters.json)
 
-The characters all also have independent (non-shared) memory blocks containing their own personas (bios) that impact how they chat with you.
-You can find the information that's used to seed the initial set of characters in [/lib/characters.json](/lib/characters.json).
+### 3. Chat with Characters
 
-### Chatting with a character
+<img width="702" alt="Chat Interface" src="https://github.com/user-attachments/assets/24d029f2-684a-4ae4-80c5-d62fe9248216" />
 
-When you click on a character card (the `Chat Now` button), the app will first check if an existing copy of that character exists - if so, it will load the character's state (so you can resume your prior conversation), and if not, it will send a `POST` request to the Letta server to create a new version of the character (creating a new agent with two memory blocks, one shared block `human`, and one private `persona`).
+**Character States:**
+- **Active**: Agent exists and will resume previous conversations
+- **New**: Agent will be created on first interaction
 
-<img width="702" alt="image" src="https://github.com/user-attachments/assets/24d029f2-684a-4ae4-80c5-d62fe9248216" />
+**Actions:**
+- **Chat Now**: Start or resume a conversation
+- **🔁 Reset**: Delete the character's memory and start fresh
 
-On the main page, you can also click the 🔁 **reset button**, which will delete the character (agent) from the Letta server, so you can start fresh.
-`Active` means that the agent already exists, and `New` means that the agent has not yet been created (in the backend).
+### 4. Manage Characters in the ADE
 
-When you chat with the character, the character may update the `human` block (e.g. if you tell that character your name), which will immediately propogate to the other characters' own memory.
+View and manage your characters in the [Letta Agent Development Environment](https://app.letta.com):
 
-### Viewing your characters in the ADE
+<img width="1437" alt="Letta ADE" src="https://github.com/user-attachments/assets/27352a08-4fbb-4671-a2b0-d7c47f36e473" />
 
-Because each character in the app is backed by a stateful agent running on Letta Cloud (or your own Letta server), you can view these characters by going to [https://app.letta.com](https://app.letta.com) and opening the Agent Development Environment (ADE).
+Characters created by the app are prefixed with `character_*`.
 
-<img width="1437" alt="image" src="https://github.com/user-attachments/assets/27352a08-4fbb-4671-a2b0-d7c47f36e473" />
+## Quick Start
 
-The characters generated by the app will be prefixed with `character_*`.
+### Option 1: Deploy on Vercel
 
----
+1. Visit the [v0 project link](https://v0.dev/chat/characterplus-project-4d7WsE1OJeb)
+2. Click "Deploy" to create your own live version
+3. Share with friends or preview in the v0 window
 
-## ✨ How we built it
-
-1. We started by writing out a prompt explaining the kind of app we wanted to build (a CharacterAI-style app with long-term memory) in plain English.
-2. We then copied the CharacterAI prompt + the [default Letta vibecoding prompt]() into a Vercel v0 chat session.
-3. We
-
-To try building it yourself, you can copy-paste the same prompts into your own v0/lovable/cursor/... session.
-
----
-
-## [TODO emoji] Taking it to production (adding auth)
-
-One big feature missing in this demo app that would be required to take it to production is end-user authentication.
-
-Right now, the way the app works is you use your Letta Cloud API key directly, which is associated with a developer account - so every agent created as associated at the root level with your account on Letta Cloud.
-
-However, as a developer you may be building an application that's meant to serve many end-users. This is supported in Letta through the concept of **identities**, where you could associate all agents created in your Letta Cloud account with a separate identity, with a 1:1 mapping between identities and end-useres in your application.
-
-To read more about identities, check our [developer documentation](https://docs.letta.com/guides/agents/multi-user). The tl;dr is you would change the agent creation and agent list API calls to use identities (right now they do not use identities).
-
----
-
-## 🚀 Quick Start
-
-### Try it on Vercel / v0
-
-Simply copy the shared [v0 link](https://v0.dev/chat/characterplus-project-4d7WsE1OJeb), click "Deploy" to create a live version using Vercel that you can share with friends, or just preview the app inside the main v0 window.
-
-### Build it from source
+### Option 2: Run Locally
 
 ```bash
+# Clone the repository
+git clone <repository-url>
+cd characterplus
+
+# Install dependencies
 pnpm install        # or yarn / npm
 
+# Set up environment variables
 cp .env.example .env.local
-# then add your Letta Cloud key:
+# Add your Letta Cloud API key to .env.local:
 # LETTA_API_KEY=sk-ltta-...
 
-# 3. Run dev server
+# Start the development server
 pnpm dev
 ```
 
-## 📝 Contributing
+## Production Considerations
 
-Pull requests are welcome! Feel free to fork, improve, and open PRs – whether it's UI polish, better memory UX, or new demo characters.
+### Authentication (Required for Production)
 
-To chat with the Letta team and other devs building on Letta, visit [our Discord server](https://discord.gg/letta).
+The current demo uses your personal Letta Cloud API key, which isn't suitable for multi-user applications. For production deployment, implement user authentication using Letta's **identity system**:
+
+- Each end-user should have a unique identity
+- Agents are associated with user identities, not your developer account
+- Modify agent creation and listing API calls to include identity parameters
+
+📚 Learn more about [multi-user support in Letta](https://docs.letta.com/guides/agents/multi-user).
+
+## Contributing
+
+We welcome contributions! Feel free to:
+- Improve the UI/UX
+- Enhance memory management features
+- Add new demo characters
+- Fix bugs or improve documentation
+
+**Join the Community**: Chat with the Letta team and other developers on [Discord](https://discord.gg/letta).
+
+## License
+
+MIT licensed, please feel free to use take this code, remix it, and do whatever you want with it!
+
+---
+
+Built with 💜 using [Letta](https://letta.com) and [Vercel v0](https://v0.dev)
