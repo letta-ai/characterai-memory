@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  ### 🚀 [Try the app!](https://v0.dev/chat/characterplus-project-4d7WsE1OJeb)
+  ### 🚀 [Try the app!](https://characterplus.vercel.app/)
   
   [**v0 Transcript**](https://v0.dev/chat/characterplus-project-4d7WsE1OJeb) • 
   [**Watch on YouTube**](https://www.youtube.com/@letta-ai) • 
