@@ -1,4 +1,4 @@
-# CharacterPlus: Build Character AI with Memory Using Letta
+# CharacterPlus: Character AI with Memory Using Letta
 
 <div align="center">
   
