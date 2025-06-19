@@ -1,0 +1,23 @@
+I want to make a website similar to CharacterAI using the Letta API. We’ll call the website CharacterPlus, because we’re going to make a similar experience to CharacterAI, but it will be improved because each character will not just be a chat session, but a full agent that has long-term memory and can call various custom tools.
+
+Basically, the landing page should be a bunch of character cards, each card has the character name, their description, and an image of that character. And you can see a tile of cards that you can choose from. So that’s the home page.
+
+The second main page we need to build is the chat page. When you click on a character, you’re dropped into a chat with them. You can message them back and forth, standard chatbot style. The top of the chat should show the character image, their name, and the description of the character. One improvement over the standard character AI chat is that we’ll also show memory as part of the chat view, but we can add that later.
+
+How to get started:
+Let’s start by creating a bank of character “cards”, this can just be a JSON file. For these characters, we’ll need their name (unique handle), profile picture, their short description, and their “bio” (long description, that’s used to initialize the memory). Both short and long descriptions should be in the first person. Let’s start with three characters, “Hades”, “Elon”, and “Ship AI”.
+For “Ship AI”, here’s an example short/long: “I’m the AI in control of this spaceship.”, long: “I am the AI in control of this spaceship, capable of executing commands while ensuring the safety of the crew. My abilities include navigation, maintenance, and communication.\nAreas of expertise:\nSpaceship navigation, maintenance, and communication. I can also provide information on space phenomena, astronomy, and spacecraft engineering. I am fascinated by the concept of black holes and their immense gravitational pull.”
+
+Then after that:
+Create the home page
+Then create the chat page
+
+Don’t do everything at once, instead do each page one-by-one and we’ll test before moving on.
+
+For using the Letta SDK, let’s make it so that the way it works is to use the app, the user first has to enter their Letta Cloud API key. Then when the user clicks on any of the characters, we create a new agent with the name format character_{name} if that agent doesn’t already exist, and if it does exist, we load it. Each agent should have two memory blocks, human and persona, and the persona is where you put the character bio. We should also give the agents web_search and run_code, just in case they need those tools.
+
+For now, let’s start with the human block always is just a placeholder that says “Empty for now”, but we’ll improve the app later to make it so that the user can edit their profile, and their profile is actually a memory block stored in the Letta API, that all characters share. So if any character edits the information about the user, all the other characters can see it.
+
+So the API operations you’ll need in the Letta are: list agents, create agent, send message stream, get messages (for populating the chat window). Then when we move on to making the user block shared, we need to create blocks.
+
+OK, let’s get started! The first thing I’ll do is copy-paste a Letta prompt guide to help you understand the SDK. I can also copy-paste the full TypeScript/Node.js reference for you too, just let me know if you need it.
